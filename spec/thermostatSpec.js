@@ -66,8 +66,6 @@ describe('Thermostat', function() {
       expect(thermostat.getCurrentTemperature()).toEqual(32);
     });
   });
-
-
     it('can be reset to the default temperature', function(){
       for (var i = 0; i < 6; i++) {
         thermostat.up();
@@ -75,4 +73,31 @@ describe('Thermostat', function() {
       thermostat.resetTemperature();
       expect(thermostat.getCurrentTemperature()).toEqual(20)
     });
+    //  You can ask about the thermostat's current energy usage:
+    //  < 18 is low-usage, < 25 is medium-usage, anything else is high-usage.
+
+  describe('displaying usage levels', function(){
+    describe('when the temperature is below 18 degrees', function(){
+      it('it is considered a low-usage', function(){
+        for (var i = 0; i < 3; i++) {
+          thermostat.down();
+        }
+        expect(thermostat.energyUsage()).toEqual('low-usage');
+      });
+    });
+    describe('when the temperatureis between 18 and 25 degrees', function(){
+      it('it is considered a medium-usage', function(){
+        expect(thermostat.energyUsage()).toEqual('medium-usage');
+      });
+    });
+    describe('when the temperatureis is anything else', function(){
+      it('it is considered a high-usage', function(){
+        thermostat.powerSavingMode = false;
+        for (var i = 0; i < 6; i++) {
+          thermostat.up();
+        }
+        expect(thermostat.energyUsage()).toEqual('high-usage');
+      });
+    });
+  });
 });
