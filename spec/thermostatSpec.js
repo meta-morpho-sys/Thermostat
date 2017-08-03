@@ -9,6 +9,6 @@ describe('Thermostat', function() {
   });
 // Customer requirement #1 Thermostat starts at 20 degrees
   it('starts at 20 degrees', function() {
-    expect(thermostat.temperature).toEqual(20);
+    expect(thermostat.getCurrentTemperature()).toEqual(20);
   });
 });
