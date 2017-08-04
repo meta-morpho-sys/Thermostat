@@ -32,12 +32,11 @@ $(document).ready(function() {
   $('#select-city').submit(function(event) {
     event.preventDefault();
     var city = $('#current-city').val();
-    $.get('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=21cf3a7f132c00aeea649a37346983c5&units=metric', function(data) {
-      $('#current-temperature').text(data.main.temp);
-    })
+    displayWeather(city);
   })
-// the code below is rather limiting fot the user as it gives only several options.
-  // $('#current-city').change(function() {
+
+  // $('#select-city').submit(function(event) {
+  //   event.preventDefault();
   //   var city = $('#current-city').val();
   //   $.get('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=21cf3a7f132c00aeea649a37346983c5&units=metric', function(data) {
   //     $('#current-temperature').text(data.main.temp);
@@ -47,5 +46,14 @@ $(document).ready(function() {
   function updateTemperature() {
     $('#temperature').text(thermostat.temperature);
     $('#temperature').attr('class', thermostat.energyUsage());
+  }
+
+  function displayWeather(city) {
+    var url = 'https://api.openweathermap.org/data/2.5/weather?q=' + city;
+    var token = '&appid=21cf3a7f132c00aeea649a37346983c5';
+    var units = '&units=metric';
+    $.get(url + token + units, function(data) {
+      $('#current-temperature').text(data.main.temp);
+    })
   }
 });
