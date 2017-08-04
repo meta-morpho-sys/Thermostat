@@ -13,18 +13,18 @@ $(document).ready(function() {
   });
 
   $('#temp-reset').click(function() {
-    thermostat.reset();
+    thermostat.resetTemperature();
     updateTemperature();
   });
 
   $('#psm-on').click(function() {
-    thermostat.powerSavingModeOn();
+    thermostat.switchPowerSavingModeOn();
     $('#psm-on').text('on');
     updateTemperature();
   })
 
   $('#psm-off').click(function() {
-    thermostat.powerSavingModeOff();
+    thermostat.switchPowerSavingModeOff();
     $('#psm-off').text('off');
     updateTemperature();
   })
