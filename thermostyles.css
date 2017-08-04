@@ -1,9 +1,18 @@
+body {
+    color: white;
+    background-image: url("northern_lights.jpg");
+}
+
+h1 {
+  color: white;
+
+}
   .low-usage {
     color: green;
   }
 
   .medium-usage {
-    color: blue;
+    color: yellow;
   }
 
   .high-usage {
